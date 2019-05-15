@@ -16,9 +16,13 @@ class AppState extends State<App> {
   };
 
   void _selectTab(TabItem tabItem) {
-    setState(() {
-      currentTab = tabItem;
-    });
+    if (currentTab == tabItem) {
+      navigatorKeys[currentTab].currentState.maybePop();
+    } else {
+      setState(() {
+        currentTab = tabItem;
+      });
+    }
   }
 
   @override
